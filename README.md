@@ -41,9 +41,29 @@ argument to `submitit_local`.
 
 ## Launch array of jobs on the SLURM cluster
 
+### Grid Search
+
 You can launch multiple jobs at once by specifying their values in the launch command.
 
 For example, the following command launches 4 jobs which corresponds to all
 the possible combinations of arguments.
 
 `python slurm_hydra_submitit/script.py --multirun hydra/launcher=submitit_slurm project_name=P1,P2 train.epochs=30,40`
+
+### Specific Parameters Combinations
+
+Alternatively, you can pass sets of parameters to test together:
+
+`python slurm_hydra_submitit/script.py --multirun hydra/launcher=submitit_slurm +compile="{project_name:P1,train.epochs:30}, {project_name:P2,train.epochs:40}"`
+
+To clean this command a bit, we can create a bash script similar to this:
+
+```bash
+#!/bin/bash
+params=(
+    '{project_name:P1,train.epochs:10},'
+    '{project_name:P2,train.epochs:20}'
+)
+
+slurm_hydra_submitit/script.py --multirun hydra/launcher=submitit_slurm +compile="${params[*]}"
+```
