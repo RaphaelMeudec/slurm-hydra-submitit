@@ -23,6 +23,8 @@ them to the following underlying functions.
 
 ## Launch jobs on a SLURM cluster with Hydra submitit launcher
 
+### Launch a job on the cluster
+
 > :warning: You need to install `hydra-submitit-launcher` for this step.
 
 Now that our Hydra conf is setup, we want to run the job on a SLURM cluster
@@ -38,6 +40,15 @@ If you connect to your SLURM cluster scheduler node, just by installing
 
 To test locally before sending to the cluster, you can switch the `hydra/launcher`
 argument to `submitit_local`.
+
+### Adapt node parameters
+
+You can easily adapt the SLURM parameters by modifying the
+[following arguments](cpus_per_task) SLURM launcher arguments.
+
+
+For example, the following script is executed on nodes with 10 CPUs:
+`python slurm_hydra_submitit/script.py --multirun hydra/launcher=submitit_slurm hydra.launcher.cpus_per_task=10`
 
 ## Launch array of jobs on the SLURM cluster
 
