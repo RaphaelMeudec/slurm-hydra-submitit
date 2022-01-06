@@ -1,0 +1,9 @@
+project_name: MyProject
+
+preprocess:
+  kernel_name: MyKernel
+
+train:
+  model_name: MyModel
+  epochs: 30
+  batch_size: 64
