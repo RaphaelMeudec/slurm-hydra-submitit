@@ -63,6 +63,8 @@ the possible combinations of arguments.
 
 ### Specific Parameters Combinations
 
+<!-- This section is a backlink for Jean Zay docs. Be careful if changing name of the section. -->
+
 Alternatively, you can pass sets of parameters to test together:
 
 `python slurm_hydra_submitit/script.py --multirun hydra/launcher=submitit_slurm +compile="{project_name:P1,train.epochs:30}, {project_name:P2,train.epochs:40}"`
